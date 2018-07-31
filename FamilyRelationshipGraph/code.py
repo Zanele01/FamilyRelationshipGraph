@@ -2,6 +2,8 @@ import networkx as nx
 from collections import defaultdict
 import matplotlib.pyplot as plt
 
+import graphTrial
+
 #read relationships and store in an adjacency list
 def create_list(adj):
 	data = open('data.txt', 'r').readlines()
@@ -17,3 +19,7 @@ if __name__ == '__main__':
 	adj_list = create_list(adj)
 
 	g = nx.Graph()
+	
+	graphTrial.draw_graph()
+	graphTrial.plot_graph()
+	

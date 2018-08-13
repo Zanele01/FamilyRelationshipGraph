@@ -10,7 +10,7 @@ if __name__ == '__main__':
     #create networkx graph
     graph = nx.Graph()
     G = Graph_draw() #create graph draw object
-    G.create_edgelist('data.txt')
+    G.create_edgelist('test_edges.txt')
 
     #calculate edge length
     length = Edge_Length()

@@ -7,9 +7,7 @@ class Edge_Length:
 
 	def convert_edge_weights_to_length(self, weights):
 		for data in weights:
-			self.edge_length.append(1 - data)
+			self.edge_length.append(round(1 - data))
 		
 	def get_length(self):
 		return self.edge_length
-
-	

@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-class Colormap:
+class Colour_Map:
+
     def __init__(self):
         self.nodes = []
         self.features = []
@@ -26,7 +27,7 @@ class Colormap:
         df = df.set_index('nodes')
         df = df.reindex(graph.nodes())
         
-        df['features']=pd.Categorical(df['features'])
+        df['features']= pd.Categorical(df['features'])
         df['features'].cat.codes
         
         return df

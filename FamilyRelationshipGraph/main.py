@@ -10,7 +10,7 @@ if __name__ == '__main__':
     #create networkx graph
     graph = nx.Graph()
     G = Graph_draw() #create graph draw object
-    G.create_edgelist('test_edges.txt')
+    G.create_edgelist('data.txt')
 
     #calculate edge length
     length = Edge_Length()
@@ -19,9 +19,10 @@ if __name__ == '__main__':
     #add colormap 
     Colormap = Colormap()
     Colormap.create_nodes('nodes.txt')
-    df = pd.DataFrame()
-
+    Colormap.add_nodes(graph)
+    
     G.add_edges(graph, length.get_length()) #add all edges to graph
+    df = pd.DataFrame()
     df = Colormap.create_map(graph)
 
     G.draw_graph(graph,df)

@@ -15,11 +15,10 @@ class Colormap:
             self.features.append(v)
         data.close()
 
-    def get_nodes(self):
-        return self.nodes
-
-    def get_features(self):
-        return self.features
+    def add_nodes(self,graph):
+        length = len(self.nodes)
+        for i in range (0,length):
+            graph.add_node(self.nodes[i], feature = self.features[i])
 
     def create_map(self, graph):
         df = pd.DataFrame({'nodes': self.nodes})
@@ -32,3 +31,9 @@ class Colormap:
         df['features'].cat.codes
 
         return df
+
+    def get_nodes(self):
+        return self.nodes
+
+    def get_features(self):
+        return self.features

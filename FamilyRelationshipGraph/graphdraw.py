@@ -1,5 +1,10 @@
 import matplotlib.pyplot as plt
 import networkx as nx
+import numpy as np
+import sys
+import operator as op
+import copy
+
 
 from Filtering import Filtering
 
@@ -32,11 +37,10 @@ class Graph_draw:
 		for i in range(0,length):
 			if graph.nodes[i]['feature'] > Filter.get_node_data():
 				self.filter.append(graph.nodes[i]['feature'])
-		for j in self.filter:
-			print(j)
+				filter_graph = graph.subgraph(self.filter)
 					
 	def draw_graph(self, graph, map):
-		self.search_node_attributes(graph)
+		
 		nx.draw(graph, pos = None, node_size = 150, with_labels = True, node_color = map['features'].cat.codes, cmap = plt.cm.get_cmap("Set1"), edge_color = 'gray')
 		plt.axis('off')
 		plt.show()

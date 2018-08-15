@@ -20,9 +20,12 @@ class Colormap:
         for i in range (0,length):
             graph.add_node(self.nodes[i], feature = self.features[i])
 
-    def create_map(self, graph):
-        df = pd.DataFrame({'nodes': self.nodes})
-        df['features'] = self.features
+      def create_map(self, graph):
+        df = pd.DataFrame({'nodes': graph.nodes()})
+
+        feature = []
+        for item in graph.nodes(data='feature'):
+            feature.append(item[1])
         
         df = df.set_index('nodes')
         df = df.reindex(graph.nodes())

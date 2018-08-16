@@ -16,14 +16,19 @@ class Graph_draw:
 		self.filter = []
 		
 	def create_edgelist(self, filename):
-		data = open('data.txt', 'r').readlines()
-		for line in data:
+		data = open(filename, 'r')
+		lines = data.readlines()
+		for line in lines:
 			u,v,w = map(float, line.strip().split(' '))   
 			self.edges.append((int(u),int(v)))    
-			self.weights.append(w)
-			
+			self.weights.append(w)	
+		data.close()
+		
 	def get_weights(self):
 		return self.weights
+		
+	def get_edges(self):
+		return self.edges
 		
 	def add_edges(self, graph, length):
 		edge_size = len(self.edges)
@@ -43,7 +48,14 @@ class Graph_draw:
 		
 		nx.draw(graph, pos = None, node_size = 150, with_labels = True, node_color = map['features'].cat.codes, cmap = plt.cm.get_cmap("Set1"), edge_color = 'gray')
 		plt.axis('off')
+		plt.savefig("graph.pdf")
 		plt.show()
+		
+	
+		
+		
+	
+		
 		
 	
 		

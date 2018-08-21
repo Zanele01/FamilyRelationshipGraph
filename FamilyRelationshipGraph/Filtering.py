@@ -1,14 +1,12 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 
-from Edge_Length import Edge_Length
-
 class Filtering:
 	def __init__(self):
 		self.filterednodes = []
 		self.filteredweights = []
 		
-	def filter_nodes(self, graph,node_attribute):
+	def filter_nodes(self,graph,node_attribute):
 		length = len(graph.nodes())
 		for i in range(0,length):
 			if graph.nodes[i]['feature'] < int(node_attribute): 
@@ -42,7 +40,7 @@ class Filtering:
 			if self.search_filterednodes(item) == True:
 				graph.remove_node(item)
 				
-	def remove_filteredweights(self,graph):
+	def remove_weights(self,graph):
 		for edges in list(graph.edges(data='weight')):
 			if self.search_filteredweights(edges[2]) == True: 
 				graph.remove_edge(edges[0], edges[1])
@@ -53,6 +51,10 @@ class Filtering:
 	def get_filtered_weights(self):
 		return self.filteredweights
 				
+					
+					
+					
+
 					
 					
 					

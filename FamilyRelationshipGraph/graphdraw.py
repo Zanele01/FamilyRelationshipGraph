@@ -1,12 +1,5 @@
 import matplotlib.pyplot as plt
 import networkx as nx
-import numpy as np
-import sys
-import operator as op
-import copy
-
-
-from Filtering import Filtering
 
 class Graph_draw:
 
@@ -46,10 +39,15 @@ class Graph_draw:
 					
 	def draw_graph(self, graph, map):
 		
-		nx.draw(graph, pos = None, node_size = 150, with_labels = True, node_color = map['features'].cat.codes, cmap = plt.cm.get_cmap("Set1"), edge_color = 'gray')
+		nx.draw(graph, pos = None, node_size = 150,with_labels = True, node_color = map['features'].cat.codes, cmap = plt.cm.get_cmap("Set1"), edge_color = 'gray')
 		plt.axis('off')
-		plt.savefig("graph.pdf")
 		plt.show()
+		
+	
+		
+		
+	
+		
 		
 	
 		

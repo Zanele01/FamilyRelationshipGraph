@@ -27,12 +27,13 @@ if __name__ == '__main__':
 	
 	#Filtering nodes
 	Filter = Filtering()
-	#Filter.filter_nodes(graph)
+	node_attribute = 23
+	#Filter.filter_nodes(graph,node_attribute)
 	#Filter.remove_edges(graph)
 	#Filter.remove_nodes(graph)
-	weight = 0.5
+	weight = 0.56
 	Filter.filter_weights(graph,weight)
-	Filter.remove_filteredweights(graph)
+	Filter.remove_weights(graph)
 	
 	df = pd.DataFrame()
 	df = Colormap.create_map(graph)

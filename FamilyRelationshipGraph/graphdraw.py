@@ -6,6 +6,8 @@ class Graph_draw:
 	def __init__(self):
 		self.edges = []
 		self.weights = []
+		self.fig = plt.figure(figsize=(10,10))
+		self.ax = self.fig.add_subplot(1,1,1)
 		self.filter = []
 		
 	def create_edgelist(self, filename):
@@ -36,12 +38,15 @@ class Graph_draw:
 			if graph.nodes[i]['feature'] > Filter.get_node_data():
 				self.filter.append(graph.nodes[i]['feature'])
 				filter_graph = graph.subgraph(self.filter)
+				
+	def animate(self):
+		self.ax.clear()
+		return self.ax
 					
 	def draw_graph(self, graph, map):
-		
-		nx.draw(graph, pos = None, node_size = 150,with_labels = True, node_color = map['features'].cat.codes, cmap = plt.cm.get_cmap("Set1"), edge_color = 'gray')
-		plt.axis('off')
-		plt.show()
+		anim = animation.FuncAnimation(self.fig, self.draw_graph)
+		nx.draw(graph,ax= self.ax, pos = None, node_size = 20)#, with_labels = True, node_color = map['features'].cat.codes, cmap = plt.cm.get_cmap("Set1"), edge_color = 'gray')
+		return plt.gcf()
 		
 	
 		

@@ -44,6 +44,7 @@ class Filtering:
 		for edges in list(graph.edges(data='weight')):
 			if self.search_filteredweights(edges[2]) == True: 
 				graph.remove_edge(edges[0], edges[1])
+				graph.remove_nodes_from(list(nx.isolates(graph)))
 	
 	def get_filtered_nodes(self):
 		return self.filterednodes 

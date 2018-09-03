@@ -5,8 +5,7 @@ import matplotlib.animation as animation
 from networkx.drawing.nx_agraph import graphviz_layout
 from Filtering import Filtering
 
-class Graph_draw:
-
+class GraphDraw:
 	def __init__(self):
 		self.edges = []
 		self.fig = plt.figure(figsize=(8,8))
@@ -40,7 +39,7 @@ class Graph_draw:
 	def draw_graph(self, graph, map):
 		anim = animation.FuncAnimation(self.fig, self.draw_graph)
 		positions = graphviz_layout(graph)#, k=0.99*1/np.sqrt(len(graph.nodes())))#*1/np.sqrt(len(graph.nodes())))
-		nx.draw(graph,ax= self.ax, pos = positions, node_size = 30, node_color = map['features'].cat.codes, cmap = plt.cm.get_cmap("tab20"), edge_color = 'gray')
+		nx.draw(graph,ax= self.ax, pos = positions, node_size = 30, node_color = map['features'].cat.codes, cmap = plt.cm.get_cmap("Set1"), edge_color = 'gray')
 		labels = nx.get_edge_attributes(graph,'weight')
 		nx.draw_networkx_edge_labels(graph,positions,edge_labels=labels, font_size = 3)
 		plt.savefig("graph.pdf")

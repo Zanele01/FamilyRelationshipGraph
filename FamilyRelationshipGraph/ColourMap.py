@@ -1,7 +1,9 @@
-import matplotlib.pyplot as plt
+import networkx as nx
 import pandas as pd
+import tkinter as tk
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg)
 
-class Colormap:
+class ColourMap:
     def __init__(self):
         self.nodes = []
         self.features = []
@@ -10,9 +12,9 @@ class Colormap:
         data = open(filename, 'r')
         lines = data.readlines()
         for line in lines:
-            u,v = map(int, line.strip().split(' '))   
+            u,v = line.strip('	').split()   
             self.nodes.append(u)   
-            self.features.append(v)
+            self.features.append(float(v))
         data.close()
 
     def add_nodes(self,graph):
@@ -30,7 +32,6 @@ class Colormap:
         df['features'] = feature
         
         df = df.set_index('nodes')
-        df = df.reindex(graph.nodes())
         
         df['features']=pd.Categorical(df['features'])
         df['features'].cat.codes

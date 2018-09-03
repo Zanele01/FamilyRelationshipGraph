@@ -1,7 +1,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
  
-class Edge_Length:	
+class EdgeLength:	
 	def __init__(self):
 		self.edge_length = []
 

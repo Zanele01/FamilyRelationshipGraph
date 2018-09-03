@@ -7,42 +7,31 @@ class Filtering:
 		self.filteredweights = []
 		
 	def filter_nodes(self,graph,node_attribute):
-		length = len(graph.nodes())
-		for i in range(0,length):
-			if graph.nodes[i]['feature'] < int(node_attribute): 
-				self.filterednodes.append(i)
+		for node in graph.nodes(data='feature'):
+			if node[1] < float(node_attribute): 
+				self.filterednodes.append(node[0])
+		self.remove_nodes(graph)
 				
 	def filter_weights(self,graph,weight_attribute):
 		for edges in graph.edges(data='weight'):
 			if edges[2] < float(weight_attribute): 
 				self.filteredweights.append(edges[2])
-				
-	def search_filterednodes(self,item):
-		for node in range(0,len(self.filterednodes)):
-			if node == item:
-				return True
-		return False
-	
-	def search_filteredweights(self,item):
-		for weight in range(0,len(self.filteredweights)):
-			if self.filteredweights[weight] == item:
-				return True
-		return False
+		self.remove_weights(graph)
 		
-	def remove_edges(self, graph):
+	def remove_nodes(self, graph):
 		if len(self.filterednodes) != 0:
 			for item in list(graph.edges()):
-				if self.search_filterednodes(item[0]) == True or self.search_filterednodes(item[1]) == True:
+				if item[0] not in self.filterednodes and item[1] not in self.filterednodes:
+					continue
+				else:
 					graph.remove_edge(item[0], item[1])
-	
-	def remove_nodes(self,graph):
-		for item in list(graph.nodes()):
-			if self.search_filterednodes(item) == True:
-				graph.remove_node(item)
+					graph.remove_nodes_from(list(nx.isolates(graph)))
 				
 	def remove_weights(self,graph):
 		for edges in list(graph.edges(data='weight')):
-			if self.search_filteredweights(edges[2]) == True: 
+			if edges[2] not in self.filteredweights: 
+				continue
+			else:
 				graph.remove_edge(edges[0], edges[1])
 				graph.remove_nodes_from(list(nx.isolates(graph)))
 	
